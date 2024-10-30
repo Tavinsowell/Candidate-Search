@@ -103,6 +103,7 @@ tbody tr:nth-child(odd) {
 .nav-item {
   padding: 0 0.5rem;
   list-style: none;
+  display: inline; /* Add this line to make items display next to each other */
 }
 
 .nav-link {

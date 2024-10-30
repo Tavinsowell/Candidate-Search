@@ -1,8 +1,11 @@
 const Nav = () => {
-  // TODO: Add necessary code to display the navigation bar and link between the pages
   return (
-    <div>Nav</div>
-  )
+    <nav className="nav">
+      <ul>
+        <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
+        <li className="nav-item"><a className="nav-link" href="/SavedCandidates">potential candidate</a></li>
+      </ul>
+    </nav>
+  );
 };
-
 export default Nav;
