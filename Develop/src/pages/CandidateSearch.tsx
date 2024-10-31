@@ -36,7 +36,9 @@ const CandidateSearch = () => {
   const handleSaveCandidate = () => {
     if (candidate) {
       console.log('Saving candidate:', candidate); // Log candidate being saved
-      setPotentialCandidates([...potentialCandidates, candidate]);
+      const updatedCandidates = [...potentialCandidates, candidate];
+      setPotentialCandidates(updatedCandidates);
+      localStorage.setItem('savedCandidates', JSON.stringify(updatedCandidates));
       setCurrentIndex(currentIndex + 1);
     }
   };
