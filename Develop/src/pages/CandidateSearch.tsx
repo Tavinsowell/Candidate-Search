@@ -1,6 +1,6 @@
 import Candidate from '../interfaces/Candidate.interface';
 import { useState, useEffect } from 'react';
-import { searchGithub } from '../api/API';
+import { searchGithub, searchGithubUser } from '../api/API';
 
 const CandidateSearch = () => {
   const [candidate, setCandidate] = useState<Candidate | null>(null);
@@ -11,8 +11,10 @@ const CandidateSearch = () => {
     const fetchCandidate = async () => {
       const result = await searchGithub();
       console.log('Fetched candidates:', result); // Log fetched data
+      const user = await searchGithubUser(result[0].login);
+      console.log('Fetched user:', user); // Log fetched user
       if (result.length > 0) {
-        setCandidate(result[0]);
+        setCandidate(user);
       }
     };
 
@@ -24,8 +26,10 @@ const CandidateSearch = () => {
       const fetchCandidate = async () => {
         const result = await searchGithub();
         console.log('Fetched candidates on index change:', result); // Log fetched data on index change
+        const user = await searchGithubUser(result[0].login);
+        console.log('Fetched user on index change:', user); // Log fetched user on index change
         if (result.length > 0) {
-          setCandidate(result[0]);
+          setCandidate(user);
         }
       };
 
@@ -59,6 +63,7 @@ const CandidateSearch = () => {
         <img src={candidate.avatar_url} alt={candidate.login} />
         <h2>{candidate.name || candidate.login}</h2>
         <p>Username: {candidate.login}</p>
+        <p>bio: {candidate.bio}</p>
         <p>Location: {candidate.location}</p>
         <p>Email: {candidate.email}</p>
         <p>Company: {candidate.company}</p>
